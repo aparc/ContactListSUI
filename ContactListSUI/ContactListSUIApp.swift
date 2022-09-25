@@ -12,7 +12,6 @@ struct ContactListSUIApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(PersonManager())
         }
     }
 }

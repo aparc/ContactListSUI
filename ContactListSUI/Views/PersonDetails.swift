@@ -22,9 +22,8 @@ struct PersonDetails: View {
                     .padding()
                 Spacer()
             }
-            
-            Row(systemIcon: "phone", label: person.phone)
-            Row(systemIcon: "tray", label: person.email)
+            Label(person.phone, systemImage: "phone")
+            Label(person.email, systemImage: "tray")
         }
         .listStyle(.grouped)
         .navigationTitle(person.fullName)
@@ -32,23 +31,8 @@ struct PersonDetails: View {
     
 }
 
-struct Row: View {
-    
-    let systemIcon: String
-    let label: String
-    
-    var body: some View {
-        HStack {
-            Image(systemName: systemIcon).foregroundColor(.blue)
-            Text(label)
-            Spacer()
-        }
-    }
-    
-}
-
 struct PersonDetails_Previews: PreviewProvider {
     static var previews: some View {
-        PersonDetails(person: Person(firstName: "Qwe", surname: "Rty", email: "123", phone: "123"))
+        PersonDetails(person: Person.getPersons().first!)
     }
 }

@@ -22,7 +22,7 @@ struct Person: Identifiable {
     
     static func getPersons() -> [Person] {
         var persons: [Person] = []
-        let dataStore = DataStore()
+        let dataStore = DataStore.shared
         
         let names = dataStore.names.shuffled()
         let surnames = dataStore.surnames.shuffled()

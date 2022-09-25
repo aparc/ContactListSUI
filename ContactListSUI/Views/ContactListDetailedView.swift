@@ -9,17 +9,18 @@ import SwiftUI
 
 struct ContactListDetailedView: View {
     
-    @EnvironmentObject private var personManager: PersonManager
+    let contacts: [Person]
     
     var body: some View {
-        List {
-            ForEach(personManager.persons) { person in
+        NavigationView {
+            List(contacts) { person in
                 Section(person.fullName) {
-                    Row(systemIcon: "phone", label: person.phone)
-                    Row(systemIcon: "tray", label: person.email)
+                    Label(person.phone, systemImage: "phone")
+                    Label(person.email, systemImage: "tray")
                 }
                 .textCase(.none)
             }
+            .navigationTitle("Contact List")
         }
     }
     
@@ -27,7 +28,6 @@ struct ContactListDetailedView: View {
 
 struct ContactListDetailedView_Previews: PreviewProvider {
     static var previews: some View {
-        ContactListDetailedView()
-            .environmentObject(PersonManager())
+        ContactListDetailedView(contacts: Person.getPersons())
     }
 }

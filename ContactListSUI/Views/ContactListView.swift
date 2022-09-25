@@ -9,20 +9,22 @@ import SwiftUI
 
 struct ContactListView: View {
     
-    @EnvironmentObject private var personManager: PersonManager
+    let contacts: [Person]
     
     var body: some View {
-        List(personManager.persons) {
-            NavigationLink($0.fullName, destination: PersonDetails(person: $0))
+        NavigationView {
+            List(contacts) {
+                NavigationLink($0.fullName, destination: PersonDetails(person: $0))
+            }
+            .listStyle(.plain)
+            .navigationTitle("Contact List")
         }
-        .listStyle(.plain)
     }
     
 }
 
 struct ContactListView_Previews: PreviewProvider {
     static var previews: some View {
-        ContactListView()
-            .environmentObject(PersonManager())
+        ContactListView(contacts: Person.getPersons())
     }
 }

@@ -9,21 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     
+    private let contacts = Person.getPersons()
+    
     var body: some View {
         TabView {
-            NavigationView {
-                ContactListView().navigationTitle("Contact List")
-            }
-            .tabItem {
-                Label("Contacts", systemImage: "person.3.fill")
-            }
+            ContactListView(contacts: contacts)
+                .tabItem {
+                    Label("Contacts", systemImage: "person.3.fill")
+                }
             
-            NavigationView {
-                ContactListDetailedView().navigationTitle("Contact List")
-            }
-            .tabItem {
-                Label("Numbers", systemImage: "phone.fill")
-            }
+            ContactListDetailedView(contacts: contacts)
+                .tabItem {
+                    Label("Numbers", systemImage: "phone.fill")
+                }
         }
     }
     
@@ -32,6 +30,5 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(PersonManager())
     }
 }
